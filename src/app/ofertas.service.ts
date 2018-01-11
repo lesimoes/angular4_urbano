@@ -59,4 +59,10 @@ export class OfertasService {
   }
 
 
+  public getOfertasPromise(): Promise<Oferta[]>{
+    return new Promise((resolve, reject) => {
+      resolve(this.ofertas);
+    });
+  }
+
 }
