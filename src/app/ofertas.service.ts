@@ -61,7 +61,11 @@ export class OfertasService {
 
   public getOfertasPromise(): Promise<Oferta[]>{
     return new Promise((resolve, reject) => {
-      resolve(this.ofertas);
+      let control = false;
+      if(control)
+        resolve(this.ofertas);
+      else
+        reject({cod_erro: 404, mensagem: 'Erro ao efetuar a requisição!'});
     });
   }
 
