@@ -61,12 +61,17 @@ export class OfertasService {
 
   public getOfertasPromise(): Promise<Oferta[]>{
     return new Promise((resolve, reject) => {
-      let control = false;
-      if(control)
-        resolve(this.ofertas);
+      let control = true;
+      if(control){
+        setTimeout(() => {resolve(this.ofertas)}, 3000)
+      }
       else
         reject({cod_erro: 404, mensagem: 'Erro ao efetuar a requisição!'});
-    });
+    })
+    .then((ofertas: Oferta[]) => {
+        ofertas.filter((oferta) => oferta.categoria == 'restaurante')
+      return ofertas;
+    })
   }
 
 }
