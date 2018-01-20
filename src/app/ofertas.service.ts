@@ -69,7 +69,18 @@ export class OfertasService {
         reject({cod_erro: 404, mensagem: 'Erro ao efetuar a requisição!'});
     })
     .then((ofertas: Oferta[]) => {
+        console.log('Primeiro then')
         ofertas.filter((oferta) => oferta.categoria == 'restaurante')
+      return ofertas;
+    })
+    .then( (ofertas: Oferta[]) => {
+      console.log('Segundo then')
+      return new Promise((resolve2, reject2) => {
+        setTimeout(() => {resolve2(ofertas)}, 3000)
+      });
+    })
+    .then( (ofertas: Oferta[]) => {
+      console.log('Terceiro then')
       return ofertas;
     })
   }
